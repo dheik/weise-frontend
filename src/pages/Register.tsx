@@ -18,14 +18,13 @@ export default function Register() {
 
         try {
             await api.post('/auth/register', { name, email, password });
-            // Sucesso: Redireciona para login
             navigate('/');
         } catch (err: any) {
             console.error(err);
             if (err.response?.data?.message) {
                 setError(err.response.data.message);
             } else {
-                setError('Erro ao criar conta. Tente novamente.');
+                setError('Falha ao criar conta. Tente novamente.');
             }
         } finally {
             setLoading(false);
@@ -43,7 +42,6 @@ export default function Register() {
 
                 <form className="mt-8 space-y-6" onSubmit={handleRegister}>
                     <div className="space-y-4">
-                        {/* Nome */}
                         <div className="relative">
                             <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 text-slate-500">
                                 <User size={20} />
@@ -51,14 +49,13 @@ export default function Register() {
                             <input
                                 type="text"
                                 required
-                                placeholder="Nome completo"
+                                placeholder="Nome Completo"
                                 value={name}
                                 onChange={e => setName(e.target.value)}
                                 className="block w-full rounded-lg border border-slate-700 bg-slate-800 p-3 pl-10 text-white placeholder-slate-500 focus:border-blue-500 focus:ring-blue-500 focus:outline-none transition"
                             />
                         </div>
 
-                        {/* Email */}
                         <div className="relative">
                             <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 text-slate-500">
                                 <Mail size={20} />
@@ -73,7 +70,6 @@ export default function Register() {
                             />
                         </div>
 
-                        {/* Senha */}
                         <div className="relative">
                             <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 text-slate-500">
                                 <Lock size={20} />
