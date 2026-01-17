@@ -32,12 +32,12 @@ export default function Register() {
     }
 
     return (
-        <div className="flex min-h-screen items-center justify-center bg-slate-950 p-4 text-slate-100">
-            <div className="w-full max-w-md space-y-8 rounded-2xl bg-slate-900 p-8 shadow-2xl border border-slate-800">
+        <div className="flex min-h-screen items-center justify-center bg-background p-4 text-foreground">
+            <div className="w-full max-w-md space-y-8 rounded-2xl border bg-card p-8 shadow-sm">
 
                 <div className="text-center">
-                    <h2 className="text-3xl font-bold tracking-tight text-white">Crie sua conta</h2>
-                    <p className="mt-2 text-sm text-slate-400">Comece a gerenciar suas finanças hoje</p>
+                    <h2 className="text-3xl font-bold tracking-tight text-foreground">Crie sua conta</h2>
+                    <p className="mt-2 text-sm text-muted-foreground">Comece a gerenciar suas finanças hoje</p>
                 </div>
 
                 <form className="mt-8 space-y-6" onSubmit={handleRegister}>
@@ -52,7 +52,7 @@ export default function Register() {
                                 placeholder="Nome Completo"
                                 value={name}
                                 onChange={e => setName(e.target.value)}
-                                className="block w-full rounded-lg border border-slate-700 bg-slate-800 p-3 pl-10 text-white placeholder-slate-500 focus:border-blue-500 focus:ring-blue-500 focus:outline-none transition"
+                                className="block w-full rounded-lg border border-brand-600/20 bg-brand-950/50 p-3 pl-10 text-brand-200 placeholder-brand-600/50 focus:border-brand-400 focus:ring-brand-400 focus:outline-none transition group-hover:border-brand-600/30"
                             />
                         </div>
 
@@ -66,7 +66,7 @@ export default function Register() {
                                 placeholder="Seu e-mail"
                                 value={email}
                                 onChange={e => setEmail(e.target.value)}
-                                className="block w-full rounded-lg border border-slate-700 bg-slate-800 p-3 pl-10 text-white placeholder-slate-500 focus:border-blue-500 focus:ring-blue-500 focus:outline-none transition"
+                                className="block w-full rounded-lg border bg-background p-3 pl-10 text-foreground placeholder:text-muted-foreground focus:border-ring focus:ring-ring focus:outline-none transition"
                             />
                         </div>
 
@@ -81,7 +81,7 @@ export default function Register() {
                                 placeholder="Sua senha (mín. 6 caracteres)"
                                 value={password}
                                 onChange={e => setPassword(e.target.value)}
-                                className="block w-full rounded-lg border border-slate-700 bg-slate-800 p-3 pl-10 text-white placeholder-slate-500 focus:border-blue-500 focus:ring-blue-500 focus:outline-none transition"
+                                className="block w-full rounded-lg border bg-background p-3 pl-10 text-foreground placeholder:text-muted-foreground focus:border-ring focus:ring-ring focus:outline-none transition"
                             />
                         </div>
                     </div>
@@ -95,7 +95,7 @@ export default function Register() {
                     <button
                         type="submit"
                         disabled={loading}
-                        className="group relative flex w-full justify-center rounded-lg bg-blue-600 px-4 py-3 text-sm font-semibold text-white hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-70 transition-all"
+                        className="group relative flex w-full justify-center rounded-lg bg-primary px-4 py-3 text-sm font-semibold text-primary-foreground hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:opacity-70 transition-all font-sans tracking-wide shadow-sm"
                     >
                         {loading ? (
                             <Loader2 className="animate-spin h-5 w-5" />
@@ -108,8 +108,8 @@ export default function Register() {
                     </button>
 
                     <div className="text-center text-sm">
-                        <span className="text-slate-400">Já tem uma conta? </span>
-                        <Link to="/" className="font-medium text-blue-500 hover:text-blue-400 transition">
+                        <span className="text-muted-foreground">Já tem uma conta? </span>
+                        <Link to="/" className="font-medium text-primary hover:text-primary/90 transition">
                             Fazer login
                         </Link>
                     </div>

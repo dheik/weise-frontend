@@ -31,8 +31,8 @@ export default function ExpensesPieChart({ transactions, onSliceClick }: Props) 
     if (data.length === 0) return null;
 
     return (
-        <div className="h-[300px] w-full bg-slate-900 p-4 rounded-xl border border-slate-800 shadow-sm [&_*]:outline-none">
-            <h3 className="text-white font-semibold mb-4 text-sm">Despesas por Categoria</h3>
+        <div className="h-[300px] w-full bg-card p-4 rounded-xl border shadow-sm [&_*]:outline-none">
+            <h3 className="text-card-foreground font-semibold mb-4 text-sm">Despesas por Categoria</h3>
             <ResponsiveContainer width="100%" height="100%">
                 <PieChart>
                     <Pie
@@ -53,14 +53,14 @@ export default function ExpensesPieChart({ transactions, onSliceClick }: Props) 
                             <Cell
                                 key={`cell-${index}`}
                                 fill={COLORS[index % COLORS.length]}
-                                stroke="#1e293b"
+                                stroke="var(--card)"
                                 strokeWidth={2}
                             />
                         ))}
                     </Pie>
                     <Tooltip
-                        contentStyle={{ backgroundColor: '#0f172a', borderColor: '#1e293b', color: '#fff', borderRadius: '8px' }}
-                        itemStyle={{ color: '#fff' }}
+                        contentStyle={{ backgroundColor: 'var(--popover)', borderColor: 'var(--border)', color: 'var(--popover-foreground)', borderRadius: 'var(--radius)' }}
+                        itemStyle={{ color: 'var(--popover-foreground)' }}
                         formatter={(value: number | undefined) => `R$ ${value?.toFixed(2) ?? '0.00'}`}
                     />
                     <Legend

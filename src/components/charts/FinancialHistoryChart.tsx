@@ -42,14 +42,14 @@ export default function FinancialHistoryChart({ transactions, onBarClick }: Prop
     if (data.length === 0) return null;
 
     return (
-        <div className="h-[300px] w-full bg-slate-900 p-4 rounded-xl border border-slate-800 shadow-sm [&_*]:outline-none">
-            <h3 className="text-white font-semibold mb-4 text-sm">Fluxo de Caixa Diário</h3>
+        <div className="h-[300px] w-full bg-card p-4 rounded-xl border shadow-sm [&_*]:outline-none">
+            <h3 className="text-card-foreground font-semibold mb-4 text-sm">Fluxo de Caixa Diário</h3>
             <ResponsiveContainer width="100%" height="100%">
                 <BarChart
                     data={data}
                     margin={{ top: 5, right: 0, left: -20, bottom: 20 }}
                 >
-                    <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" vertical={false} />
+                    <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" vertical={false} />
                     <XAxis
                         dataKey="name"
                         stroke="#64748b"
@@ -62,15 +62,15 @@ export default function FinancialHistoryChart({ transactions, onBarClick }: Prop
                         }}
                     />
                     <YAxis
-                        stroke="#64748b"
+                        stroke="#A3B2BF"
                         fontSize={12}
                         tickLine={false}
                         axisLine={false}
                         tickFormatter={(value) => `R$${value}`}
                     />
                     <Tooltip
-                        cursor={{ fill: '#1e293b', opacity: 0.4 }}
-                        contentStyle={{ backgroundColor: '#0f172a', borderColor: '#1e293b', color: '#fff' }}
+                        cursor={{ fill: 'var(--muted)', opacity: 0.5 }}
+                        contentStyle={{ backgroundColor: 'var(--popover)', borderColor: 'var(--border)', color: 'var(--popover-foreground)', borderRadius: 'var(--radius)' }}
                         labelFormatter={(label) => {
                             const [year, month, day] = label.split('-');
                             return `${day}/${month}/${year}`;
@@ -84,7 +84,7 @@ export default function FinancialHistoryChart({ transactions, onBarClick }: Prop
                     <Bar
                         name="Receitas"
                         dataKey="income"
-                        fill="#22c55e"
+                        fill="#10b981"
                         radius={[4, 4, 0, 0]}
                         maxBarSize={40}
                         onClick={(data: any) => onBarClick(data.name)}

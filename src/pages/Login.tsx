@@ -3,11 +3,15 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Mail, Lock, ArrowRight, Loader2 } from 'lucide-react';
 import api from '../services/api';
 import { useAuth } from '../contexts/AuthContext';
+import { useTheme } from '../components/theme-provider';
 import { GoogleLogin } from '@react-oauth/google';
+import logo from '../assets/logo.png';
+import logoDark from '../assets/logo-dark.png';
 
 export default function Login() {
     const navigate = useNavigate();
     const { login } = useAuth();
+    const { theme } = useTheme();
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -55,11 +59,17 @@ export default function Login() {
     }
 
     return (
-        <div className="flex min-h-screen items-center justify-center bg-slate-950 p-4 text-slate-100">
-            <div className="w-full max-w-md space-y-8 rounded-2xl bg-slate-900 p-8 shadow-2xl border border-slate-800">
+        <div className="flex min-h-screen items-center justify-center bg-background p-4 text-foreground">
+            <div className="w-full max-w-md space-y-8 rounded-2xl border bg-card p-8 shadow-sm">
 
                 <div className="text-center">
-                    <h2 className="text-3xl font-bold tracking-tight text-white">Weise</h2>
+                    <div className="flex justify-center mb-6">
+                        <img
+                            src={theme === 'dark' || (theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches) ? logo : logoDark}
+                            alt="Weise"
+                            className="h-20 drop-shadow-2xl"
+                        />
+                    </div>
                     <p className="mt-2 text-sm text-slate-400">Gestão financeira inteligente</p>
                 </div>
 
@@ -76,7 +86,7 @@ export default function Login() {
                                     placeholder="Seu e-mail"
                                     value={email}
                                     onChange={e => setEmail(e.target.value)}
-                                    className="block w-full rounded-lg border border-slate-700 bg-slate-800 p-3 pl-10 text-white placeholder-slate-500 focus:border-blue-500 focus:ring-blue-500 focus:outline-none transition"
+                                    className="block w-full rounded-lg border bg-background p-3 pl-10 text-foreground placeholder:text-muted-foreground focus:border-ring focus:ring-ring focus:outline-none transition"
                                 />
                             </div>
 
@@ -90,7 +100,7 @@ export default function Login() {
                                     placeholder="Sua senha"
                                     value={password}
                                     onChange={e => setPassword(e.target.value)}
-                                    className="block w-full rounded-lg border border-slate-700 bg-slate-800 p-3 pl-10 text-white placeholder-slate-500 focus:border-blue-500 focus:ring-blue-500 focus:outline-none transition"
+                                    className="block w-full rounded-lg border bg-background p-3 pl-10 text-foreground placeholder:text-muted-foreground focus:border-ring focus:ring-ring focus:outline-none transition"
                                 />
                             </div>
                         </div>
@@ -104,7 +114,7 @@ export default function Login() {
                         <button
                             type="submit"
                             disabled={loading}
-                            className="group relative flex w-full justify-center rounded-lg bg-blue-600 px-4 py-3 text-sm font-semibold text-white hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-70 transition-all"
+                            className="group relative flex w-full justify-center rounded-lg bg-primary px-4 py-3 text-sm font-semibold text-primary-foreground hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:opacity-70 transition-all font-sans tracking-wide shadow-sm"
                         >
                             {loading ? (
                                 <Loader2 className="animate-spin h-5 w-5" />
